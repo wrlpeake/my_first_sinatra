@@ -14,4 +14,4 @@ This is my first Sinatra application to learn how how to build a modular api.
 
 ## Testing
 
-1. Run `rspec` for to run the test suit
+1. Run `rspec` for to run the test suite
