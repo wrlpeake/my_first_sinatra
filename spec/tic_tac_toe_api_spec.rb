@@ -13,27 +13,21 @@ RSpec.describe 'Tic Tac Toe Sinatra API' do
     TicTacToeAPI
   end
 
-  it 'says hello world!' do
+  it 'starts correctly and gets the welcome message' do
     get '/'
     expect(last_response).to be_ok
-    expect(last_response.body).to eq('Hello World!')
+    expect(last_response.body).to eq('Welcome to Tic-Tac-Toe!')
   end
 
-  it 'posts hello from different controller' do
-    post '/different/say_hello'
+  it 'posts from the post controller' do
+    post '/post'
     expect(last_response).to be_ok
-    expect(last_response.body).to eq('Hello World from somewhere far!')
+    expect(last_response.body).to eq('Post controller working.')
   end
 
-  it 'says a welcome message to the user' do
-    get '/loadgame'
+  it 'loads a new game of tictactoe from the gem and returns json of the player marks and board' do
+    get '/loadgame/XY'
     expect(last_response).to be_ok
-    expect(last_response.body).to eq("Welcome to Tic-Tac-Toe. Let's play!")
-  end
-
-  it 'gets the game board array' do
-    get '/loadgame/displayboard'
-    expect(last_response).to be_ok
-    expect(last_response.body).to eq '[1, 2, 3, 4, 5, 6, 7, 8, 9]'
+    expect(last_response.body).to eq('{"player_one_marker":"X","player_two_marker":"Y","board":[1,2,3,4,5,6,7,8,9]}')
   end
 end
