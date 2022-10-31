@@ -2,8 +2,8 @@
 
 require 'sinatra/base'
 
-class DifferentController < Sinatra::Base
-  get '/different/say_hello' do
+class PostController < Sinatra::Base
+  post '/different/say_hello' do
     'Hello World from somewhere far!'
   end
 end
