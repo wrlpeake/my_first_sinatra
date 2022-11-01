@@ -5,16 +5,22 @@ require 'tic_tac_toe_wp'
 
 class GetController < Sinatra::Base
   get '/' do
-    'Hello World!'
+    'Welcome to Tic-Tac-Toe!'
   end
 
-  get '/loadgame' do
-    @tic_tac_toe_wp = TicTacToeWP::GameLogic.new('X', 'O')
-    "Welcome to Tic-Tac-Toe. Let's play!"
-  end
+  get '/loadgame/:marker_one:marker_two' do
+    marker_one = params['marker_one']
+    marker_two = params['marker_two']
+    @tic_tac_toe_wp = TicTacToeWP::GameLogic.new(marker_one, marker_two)
+    @player_one = @tic_tac_toe_wp.create_player(marker_one)
+    @player_two = @tic_tac_toe_wp.create_player(marker_two)
+    @board = @tic_tac_toe_wp.get_game_board
 
-  get '/loadgame/displayboard' do
-    @tic_tac_toe_wp = TicTacToeWP::GameLogic.new('X', 'O')
-    @tic_tac_toe_wp.get_game_board.to_s
+    response = {
+      'player_one_marker' => @player_one.marker,
+      'player_two_marker' => @player_two.marker,
+      'board' => @board
+    }
+    response.to_json
   end
 end

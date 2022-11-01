@@ -3,7 +3,7 @@
 require 'sinatra/base'
 
 class PostController < Sinatra::Base
-  post '/different/say_hello' do
-    'Hello World from somewhere far!'
+  post '/post' do
+    'Post controller working.'
   end
 end
