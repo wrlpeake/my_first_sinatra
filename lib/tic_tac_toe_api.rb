@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 require 'sinatra/base'
-require_relative 'get_controller'
-require_relative 'post_controller'
+require_relative 'main_controller'
 
 class TicTacToeAPI < Sinatra::Base
-  use GetController
-  use PostController
+  use MainController
 end
